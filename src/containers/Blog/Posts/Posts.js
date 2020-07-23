@@ -4,7 +4,7 @@ import Post from '../../../components/Post/Post'
 import './Posts.css'
 
 function Posts(props) {
-
+    // console.log(props)
     const [state, setstate] = useState({
         posts:[],
         selectedPostId:null,
