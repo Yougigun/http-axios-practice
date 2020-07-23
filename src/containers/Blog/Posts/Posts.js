@@ -26,9 +26,7 @@ function Posts(props) {
             console.log(error)
             setstate({error:true})
         })
-        return () => {
-            "cleanup"
-        }
+
     }, [])
 
     const postSelectedHandler= (id)=>{
@@ -36,8 +34,9 @@ function Posts(props) {
     }
 
     let posts = <p style={{textAlign:"center"}}>Something went wrong!</p>
-    console.log(state)
-    if (!state.error){
+    // console.log(state)
+    if (state.posts.length!=0){
+        
         posts = state.posts.map(
             post =>{
                 return <Post 
@@ -48,6 +47,15 @@ function Posts(props) {
                     />
             }
         )
+        }else{
+            posts=(
+                [
+                <Post title="loading" author="loading" />,
+                <Post title="loading" author="loading" />,
+                <Post title="loading" author="loading" />,
+                <Post title="loading" author="loading" />,
+                ]
+            )
     }
     return (
         <section className="Posts">
