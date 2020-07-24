@@ -26,6 +26,8 @@
 
 
 .Blog a:active,
-.Blog a:hover{
+.Blog a:hover,
+.Blog a.active
+{
     color: #fa923f;
 }
