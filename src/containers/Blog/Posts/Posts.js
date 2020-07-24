@@ -5,7 +5,6 @@ import Post from '../../../components/Post/Post'
 import './Posts.css'
 
 function Posts(props) {
-    // console.log(props)
     const [state, setstate] = useState({
         posts: [],
         selectedPostId: null,
@@ -35,14 +34,12 @@ function Posts(props) {
     }
 
     let posts = <p style={{ textAlign: "center" }}>Something went wrong!</p>
-    // console.log(state)
-    if (state.posts.length != 0) {
+    if (state.posts.length !== 0) {
 
         posts = state.posts.map(
             post => {
-                return <Link to={"/"+post.id} key={post.id}>
+                return <Link to={"/post/"+post.id} key={post.id} >
                     <Post
-                        key={post.id}
                         title={post.title}
                         author={post.author}
                         clicked={() => postSelectedHandler(post.id)}
