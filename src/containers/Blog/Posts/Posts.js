@@ -30,7 +30,8 @@ function Posts(props) {
     }, [])
 
     const postSelectedHandler = (id) => {
-        setstate({ ...state, selectedPostId: id })
+        props.history.push({pathname:"/"+id})
+        // props.history.push("/"+id)
     }
 
     let posts = <p style={{ textAlign: "center" }}>Something went wrong!</p>
@@ -38,13 +39,15 @@ function Posts(props) {
 
         posts = state.posts.map(
             post => {
-                return <Link to={"/"+post.id} key={post.id} >
+                return(          
+                    // <Link>          
                     <Post
                         title={post.title}
                         author={post.author}
                         clicked={() => postSelectedHandler(post.id)}
-                    />
-                </Link>
+                    />)
+                    // </Link>
+
             }
         )
     } else {
