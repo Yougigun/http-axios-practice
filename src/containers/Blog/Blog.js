@@ -29,12 +29,14 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-
+                <Switch>
                 {/* <Route path="/" exact render={()=> <h1>HOME</h1>}/> */}
                 <Route path="/" exact component={Posts}/>
-                <Route path="/new-post"  component={NewPost}/>
-                <Route path="/post/:id"  component={FullPost}/>
+                <Route path="/new-post" exact component={NewPost}/>
+                {/* <Route path="/post/:id" exact component={FullPost}/> */}
+                <Route path="/:id" exact component={FullPost}/>
                 {/* <Route path="/new-post" exact > <NewPost/> </Route> */}
+                </Switch>
             </div>
                 
         );

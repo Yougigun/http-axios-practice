@@ -38,7 +38,7 @@ function Posts(props) {
 
         posts = state.posts.map(
             post => {
-                return <Link to={"/post/"+post.id} key={post.id} >
+                return <Link to={"/"+post.id} key={post.id} >
                     <Post
                         title={post.title}
                         author={post.author}
