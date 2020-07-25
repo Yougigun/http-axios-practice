@@ -12,6 +12,8 @@ class NewPost extends Component {
         ifRedirect:false
     }
     componentDidMount(){
+        // this also a way to protect the page
+        // if (auth){props.history.replace("/")} 
         // console.log(this.props)
     }
     postDataHandler = () =>{
