@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import axios from "../../../axios"
+
 import Post from '../../../components/Post/Post'
+import FullPost from '../FullPost/FullPost'
 import './Posts.css'
 
 function Posts(props) {
@@ -30,8 +32,8 @@ function Posts(props) {
     }, [])
 
     const postSelectedHandler = (id) => {
-        props.history.push({pathname:"/"+id})
-        // props.history.push("/"+id)
+        props.history.push({ pathname: "/posts/" + id })
+        // props.history.push("/posts/"+id)
     }
 
     let posts = <p style={{ textAlign: "center" }}>Something went wrong!</p>
@@ -39,14 +41,14 @@ function Posts(props) {
 
         posts = state.posts.map(
             post => {
-                return(          
+                return (
                     // <Link>          
                     <Post
                         title={post.title}
                         author={post.author}
                         clicked={() => postSelectedHandler(post.id)}
                     />)
-                    // </Link>
+                // </Link>
 
             }
         )
@@ -61,9 +63,13 @@ function Posts(props) {
         )
     }
     return (
-        <section className="Posts">
-            {posts}
-        </section>
+        <div>
+            <section className="Posts">
+                {posts}
+            </section>
+            {/* <Route path="/post/:id" exact component={FullPost}/> */}
+            <Route path={this.props.match.url+"/:id"} exact component={FullPost} />
+        </div>
     )
 }
 

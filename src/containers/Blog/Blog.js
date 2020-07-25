@@ -6,39 +6,34 @@ import { Route, Switch, NavLink, Link } from 'react-router-dom'
 import './Blog.css';
 import Posts from './Posts/Posts'
 import NewPost from './NewPost/NewPost'
-import FullPost from './FullPost/FullPost'
 class Blog extends Component {
-    render () {
+    render() {
         return (
             <div className="Blog">
                 <header>
                     <nav>
                         <ul>
-                            <li><NavLink 
-                                exact 
-                                to="/"
+                            <li><NavLink
+                                exact
+                                to="/posts"
                                 activeClassName="my-active"
-                                activeStyle={{color:'red',textDecoration:'underline'}}
-                                >Home</NavLink></li>
+                                activeStyle={{ color: 'red', textDecoration: 'underline' }}
+                            >Posts</NavLink></li>
                             <li><NavLink to={{
-                                pathname:"/new-post",
-                                hash:"#submit",
-                                search:"?quick-submit=true"
+                                pathname: "/new-post",
+                                hash: "#submit",
+                                search: "?quick-submit=true"
                             }}>New Post</NavLink></li>
-                            
+
                         </ul>
                     </nav>
                 </header>
                 <Switch>
-                {/* <Route path="/" exact render={()=> <h1>HOME</h1>}/> */}
-                <Route path="/" exact component={Posts}/>
-                <Route path="/new-post" exact component={NewPost}/>
-                {/* <Route path="/post/:id" exact component={FullPost}/> */}
-                <Route path="/:id" exact component={FullPost}/>
-                {/* <Route path="/new-post" exact > <NewPost/> </Route> */}
+                    <Route path="/new-post" exact component={NewPost} />
+                    <Route path="/posts" component={Posts} />
                 </Switch>
             </div>
-                
+
         );
     }
 }
