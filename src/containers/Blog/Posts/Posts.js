@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import axios from "../../../axios"
 
 import Post from '../../../components/Post/Post'
@@ -68,7 +68,7 @@ function Posts(props) {
                 {posts}
             </section>
             {/* <Route path="/post/:id" exact component={FullPost}/> */}
-            <Route path={this.props.match.url+"/:id"} exact component={FullPost} />
+            <Route path={props.match.url+"/:id"} exact component={FullPost} />
         </div>
     )
 }

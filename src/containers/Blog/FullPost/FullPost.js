@@ -1,52 +1,45 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import './FullPost.css';
 
-class FullPost extends Component {
-    
-    state = {
-        loadedPost:null
-    }
 
-    componentDidMount(prevProps, prevState, snapshot){
+const FullPost = (props) => {
+    const [stateLoadedPost, setStateLoadedPost] = useState(null)
+    useEffect(() => {
+        setStateLoadedPost(null) // for show loading during data fetching
+        axios.get("/posts/" + props.match.params.id)
+            .then(res => {
+                //   console.log(res)
+                setStateLoadedPost(res.data )
+            })
+                    // return ()
+                }
+            , [props.match.params.id])
 
-        if (this.props.match.params.id){
-            if (!this.state.loadedPost||(this.state.loadedPost.id!==this.props.match.params.id)){
-                axios.get("/posts/"+this.props.match.params.id)
-                .then(res=>{
-                  //   console.log(res)
-                  this.setState({loadedPost:res.data})}
-                  )
-            }
-
-            }
+        const deletePostHandler = () => {
+            axios.delete('/posts/' + props.match.params.id)
+                .then(res => {
+                    console.log(res)
+                })
         }
-    
-    deletePostHandler = ()=>{
-        axios.delete('/posts/'+this.props.match.params.id)
-        .then(res =>{
-            console.log(res)
-        })
-    }
-
-    render () {
         
-        let post = <p style={{textAlign:"center"}}>Please select a Post!</p>;
-        if (this.props.match.params.id) { post = <p style={{textAlign:"center"}}>Loading!</p>;}
-        if (this.state.loadedPost) {
+
+        // let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
+        let post = <p style={{ textAlign: "center" }}>Loading!</p>
+        if (stateLoadedPost) {
             post = (
                 <div className="FullPost">
-                    <h1>{this.state.loadedPost.title}</h1>
-                    <p>{this.state.loadedPost.body}</p>
+                    <h1>{stateLoadedPost.title}</h1>
+                    <p>{stateLoadedPost.body}</p>
                     <div className="Edit">
-                        <button className="Delete" onClick={this.deletePostHandler}>Delete</button>
+                        <button className="Delete" onClick={deletePostHandler}>Delete</button>
                     </div>
                 </div>
-    
-            )
-        };
+
+            )}
+        console.log("render");
         return post;
-    }
-}
+        }
+
 
 export default FullPost;
