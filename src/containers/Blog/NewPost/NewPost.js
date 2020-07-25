@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 import axios from "axios"
 import './NewPost.css';
@@ -8,7 +8,8 @@ class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Max'
+        author: 'Max',
+        ifRedirect:false
     }
     componentDidMount(){
         // console.log(this.props)
@@ -22,12 +23,17 @@ class NewPost extends Component {
         axios.post("/posts/",data)
         .then(res => {
             console.log(res)
+            this.setState({ifRedirect:true})
         })
     }
-
+    
     render () {
+        const redirect = this.state.ifRedirect? <Redirect to="/" />:null
         return (
+            
             <div className="NewPost">
+                {/* in charge of redirect once post the data */}
+                {redirect}
                 <h1>Add a Post</h1>
                 <label>Title</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />

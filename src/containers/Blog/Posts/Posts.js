@@ -44,6 +44,7 @@ function Posts(props) {
                 return (
                     // <Link>          
                     <Post
+                        key={post.id}
                         title={post.title}
                         author={post.author}
                         clicked={() => postSelectedHandler(post.id)}
@@ -55,10 +56,10 @@ function Posts(props) {
     } else {
         posts = (
             [
-                <Post title="loading" author="loading" />,
-                <Post title="loading" author="loading" />,
-                <Post title="loading" author="loading" />,
-                <Post title="loading" author="loading" />,
+                <Post key="1" title="loading" author="loading" />,
+                <Post key="2" title="loading" author="loading" />,
+                <Post key="3" title="loading" author="loading" />,
+                <Post key="4" title="loading" author="loading" />,
             ]
         )
     }
